@@ -353,6 +353,22 @@ or
 
 .play prog/tour/the-new-function.go
 
+* Polia
+
+Typ `[n]T` je pole `n` hodnôt typu `T`.
+
+Výraz
+
+	var a [10]int
+
+deklaruje premennú `a` ako pole desiatich celých čísel.
+
+Dĺžka poľa je súčasťou jeho typu, takže nieje možné zmeniť veľkosť poľa.
+Zdá sa to byť obmedzujúce, ale neboj sa;
+Go poskytuje pohodlný spôsob práce s poľami.
+
+.play prog/tour/array.go
+
 * Slajsy
 
 Slajs ukazuje na pole hodnôt a taktiež obsahuje veľkosť.
