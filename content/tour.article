@@ -198,6 +198,28 @@ Základné typy Go sú
 
 .play prog/tour/basic-types.go
 
+* Prevody typov
+
+Výraz `T(v)` prevádza hodnotu `v` na typ `T`.
+
+Číselné prevody:
+
+	var i int = 42
+	var f float64 = float64(i)
+	var u uint = uint(f)
+
+Alebo jednoduchšie podané:
+
+	i := 42
+	f := float64(i)
+	u := uint(f)
+
+Na rozdiel od C, v Go si priradenie medzi položkami rozdielnych typov vyžaduje
+explicitný prevod.
+Vyskúšaj v ukážke odstrániť prevody `float64` alebo `int` a uvidíš čo sa stane.
+
+.play prog/tour/type-conversions.go
+
 * Konštanty
 
 Konštanty sú deklarované ako premenné, ale pomocou kľúčového slova `const`.
@@ -280,7 +302,7 @@ Pre začiatok zopakuj výpočet 10 krát a uvidíš ako blízko si sa dostal k o
 
 Ďalej zmeň podmienku cyklu tak, aby zastal vtedy, keď sa hodnota prestane meniť (alebo sa mení o veľmi malú odchylku). Uvidíš či je to viac alebo menej iterácií. Ako blízko si k [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
 
-Pomôcka: pre deklarovanie a inicializáciu desatinnej hodnoty použi syntax desatinnej hodnoty alebo použi konverziu:
+Pomôcka: pre deklarovanie a inicializáciu desatinnej hodnoty použi syntax desatinnej hodnoty alebo použi prevod:
 
 	z := float64(1)
 	z := 1.0
@@ -617,7 +639,7 @@ a sprav z neho `error` pridaním
 
 metódy tak aby `ErrNegativeSqrt(-2).Error()` vrátilo `"cannot`Sqrt`negative`number:`-2"`.
 
-*Poznámka:* volanie `fmt.Print(e)` vo vnútri metódy `Error` spôsobí v programe nekonečný cyklus. Môžes tomu zabrániť tým, že najprv skonvertuješ `e`: `fmt.Print(float64(e))`. Prečo ?
+*Poznámka:* volanie `fmt.Print(e)` vo vnútri metódy `Error` spôsobí v programe nekonečný cyklus. Môžes tomu zabrániť tým, že najprv prevedieš `e`: `fmt.Print(float64(e))`. Prečo ?
 
 Uprav svoju `Sqrt` funkciu aby vracala hodnotu `ErrNegativeSqrt` pri zadaní záporného čísla.
 
