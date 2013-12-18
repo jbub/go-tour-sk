@@ -28,7 +28,7 @@ Počas prehliadky tu nájdeš množstvo cvičení na dokončenie.
 Prehliadka je interaktívna. Klikni na tlačidlo Spustiť (alebo stlač Shift-Enter) pre skompilovanie a spustenie programu na
 #appengine: vzdialenom serveri.
 tvojom počítači.
-Výsledok je zobrazený pod zdrojovým kódom.
+Výsledok programu je vždy zobrazený pod zdrojovým kódom.
 
 Vzorové programy demonštrujú rôzne aspekty Go. Programy v prehliadke sú určené ako východiskové body pre tvoje vlastné experimenty.
 
@@ -60,13 +60,13 @@ Pre pokračovanie klikni na tlačidlo "Nasledujúci" alebo stlač klávesu PageD
 #appengine: Táto prehliadka je postavená na [[http://play.golang.org/][Go Ihrisku]],
 #appengine: webovej službe bežiacej na serveroch [[http://golang.org/][golang.org]].
 #appengine: 
-#appengine: Služba prijme Go program, skompiluje, nalinkuje a spustí ho v
+#appengine: Služba prijme Go program, skompiluje, nalinkuje, spustí ho v
 #appengine: pieskovisku a následne vráti výsledok.
 #appengine: 
 #appengine: Pre programy spúšťané v pieskovisku existujú nasledujúce obmedzenia:
 #appengine: 
 #appengine: - V ihrisku je možné použiť väčšinu štandardnej knižnice, až na niektoré výnimky; predovšetkým chýba prístup do siete a na súborový systém. Aj preto je zápis do štandardného a chybového výstupu jedinou možnou formou komunikácie programu s okolitým svetom.
-#appengine: - V ihrisku čas začína o 2009-11-10 23:00:00 UTC (určenie významnosti tohto dátumu je cvičením pre čitateľa). Umožňuje to ľahšie kešovanie programov tým, že im dáme deterministický výstup.
+#appengine: - V ihrisku čas začína o 2009-11-10 23:00:00 UTC (určenie významnosti tohto dátumu je cvičením pre čitateľa). Umožňuje to ľahšie kešovanie programov tým, že im dáme predvídateľný výstup.
 #appengine: - Existujú tiež limity pre čas behu programu a taktiež obmedzenie využitia procesoru a pamäte. Beh programov je obmedzený na jedno vlákno (je ale možné použiť viac gorutín).
 #appengine:
 #appengine: Ihrisko používa poslednú stabilnú verziu Go.
@@ -85,7 +85,7 @@ Názov balíčka je podľa konvencie rovnaký ako posledná časť cesty importu
 balíček `"math/rand"` obsahuje súbory, ktoré začínajú zápisom `package`rand`.
 
 #appengine: *Poznámka:* prostredie v ktorom sú programy spúštané je 
-#appengine: deterministické, takže `rand.Intn` vždy vráti to isté číslo.
+#appengine: predvídateľné, takže `rand.Intn` vždy vráti to isté číslo.
 #appengine: 
 #appengine: (Pre zobrazenie iného čísla je potrebné naseedovať generátor čísel; pozri [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]].)
 
@@ -93,7 +93,7 @@ balíček `"math/rand"` obsahuje súbory, ktoré začínajú zápisom `package`r
 
 * Importy
 
-Tento kód zoskupuje importy do "spravovaného" import zápisu v zátvorkách. Taktiež je možné zapísať viacero importov:
+Tento kód zoskupuje importy do "spravovaného" import zápisu v zátvorkách. Taktiež je možné zapísať viacero importov takto:
 
 	import "fmt"
 	import "math"
@@ -102,11 +102,11 @@ Tento kód zoskupuje importy do "spravovaného" import zápisu v zátvorkách. T
 
 * Exportované názvy
 
-Po importovaní balíčka je možné odkazovať na názvy, ktoré balíček exportuje.
+Po importovaní balíčka je možné odkazovať sa na názvy, ktoré balíček exportuje.
 
 V Go je názov exportovaný iba ak sa začína veľkým písmenom.
 
-`Foo` je exportovaný názov, taktiež aj `FOO`. Názov `foo` nieje exportovaný.
+`Foo` je exportovaný názov, taktiež aj `FOO`. Názov `foo` však nie je exportovaný.
 
 Spusti kód. Potom premenuj `math.pi` na `math.Pi` a vyskúšaj to znova.
 
@@ -120,7 +120,7 @@ V tejto ukážke funkcia `add` preberá dva argumenty typu `int`.
 
 Všimni si, že typ sa nachádza _za_ názvom premennej.
 
-(Pre viac informácií prečo typy takto vypadajú si pozri [[http://golang.org/doc/articles/gos_declaration_syntax.html][článok o syntaxi deklarácií v Go]].)
+(Pre viac informácií prečo takto typy vyzerajú si pozri [[http://golang.org/doc/articles/gos_declaration_syntax.html][článok o syntaxi deklarácií v Go]].)
 
 .play prog/tour/functions.go
 
@@ -156,7 +156,7 @@ Ak sú výsledkové argumenty pomenované, `return` volanie bez argumentov vraci
 
 * Premenné
 
-Volanie `var` deklaruje zoznam premenných a tak ako pri argumentoch funkcie, typ je posledný.
+Volanie `var` deklaruje zoznam premenných a tak, ako pri argumentoch funkcie, je typ posledný.
 
 .play prog/tour/variables.go
 
@@ -224,7 +224,7 @@ Vyskúšaj v ukážke odstrániť prevody `float64` alebo `int` a uvidíš čo s
 
 Konštanty sú deklarované ako premenné, ale pomocou kľúčového slova `const`.
 
-Hodnota konštanty môže byž písmeno, reťazec, pravdivostná (boolean) alebo číselná. 
+Hodnota konštanty môže byť písmeno, reťazec, pravdivostná (boolean) alebo číselná hodnota. 
 
 Konštanty nemôžu byť deklarované pomocou `:=` syntaxe.
 
@@ -244,31 +244,31 @@ Vyskúšaj taktiež vypísať `needInt(Big)`.
 
 Go obsahuje iba jeden typ cyklu a to `for` cyklus.
 
-Základný cyklus `for` vypadá tak isto ako v jazykoch C alebo Java, okrem toho, že `(`)` sú preč (dokonca ani niesú nepovinné) a `{`}` sú povinné.
+Základný cyklus `for` vypadá takisto ako v jazykoch C alebo Java, okrem toho, že `(`)` sú preč (dokonca ani nie sú nepovinné) a `{`}` sú povinné.
 
 .play prog/tour/for.go
 
 * For - pokračovanie
 
-Tak ako v jazyku C alebo Java, môžeš vynechať volania pred a po. 
+Tak, ako v jazyku C alebo Java, môžeš vynechať volania pred a po. 
 
 .play prog/tour/for-continued.go
 
 * For je cyklus "while" v Go
 
-V tomto bode môžeš vynechať bodkočiarky: Cyklus `while` je v Go hláskovaný `for`.
+V tomto bode môžeš vynechať bodkočiarky: Cyklus `while` je v Go nazývaný `for`.
 
 .play prog/tour/for-is-gos-while.go
 
 * Navždy
 
-Ak vynecháš podmienku cyklu tak sa točí donekonečna, takže nekonečný cyklus je vyjadrený kompaktne.
+Ak vynecháš podmienku cyklu tak sa cyklus točí donekonečna, takže je nekonečný cyklus vyjadrený kompaktne.
 
 .play prog/tour/forever.go
 
 * If
 
-Volanie `if` vypadá tak ako v jazokych C alebo Java, až nato, že `(`)` sú preč a `{`}` sú povinné.
+Volanie `if` vypadá tak, ako v jazokych C alebo Java, až nato, že `(`)` sú preč a `{`}` sú povinné.
 
 (Je ti to povedomé?)
 
@@ -276,11 +276,11 @@ Volanie `if` vypadá tak ako v jazokych C alebo Java, až nato, že `(`)` sú pr
 
 * If s krátkym volaním
 
-Ako pri cykle `for`, aj `if` volanie môže začínať krátkym volaním, ktoré sa vykoná pred podmienkou.
+Ako pri cykle `for`, aj `if` volanie môže začínať krátkym volaním, ktoré sa vykoná pred vyhodnotením podmienky.
 
 Premenné deklarované týmto volaním sú platné iba do konca `if`.
 
-(Vyskúšaj použiť `v` v poslednom `return` volaní.)
+(Vyskúšaj použiť `v` pri poslednom `return` volaní.)
 
 .play prog/tour/if-with-a-short-statement.go
 
@@ -300,7 +300,7 @@ V tomto prípade je Newtonova metóda aproximácia `Sqrt(x)` vybratím štartova
 
 Pre začiatok zopakuj výpočet 10 krát a uvidíš ako blízko si sa dostal k odpovedi pre rôzne hodnoty (1, 2, 3, ...).
 
-Ďalej zmeň podmienku cyklu tak, aby zastal vtedy, keď sa hodnota prestane meniť (alebo sa mení o veľmi malú odchylku). Uvidíš či je to viac alebo menej iterácií. Ako blízko si k [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
+Ďalej zmeň podmienku cyklu tak, aby zastal vtedy, keď sa hodnota prestane meniť (alebo sa mení o veľmi malú odchýlku). Uvidíš či je to viac alebo menej iterácií. Ako blízko si k funkcii [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
 
 Pomôcka: pre deklarovanie a inicializáciu desatinnej hodnoty použi syntax desatinnej hodnoty alebo použi prevod:
 
@@ -313,7 +313,7 @@ Pomôcka: pre deklarovanie a inicializáciu desatinnej hodnoty použi syntax des
 
 `struct` je kolekcia položiek.
 
-(A `type` deklarácia robí to čo by si čakal.)
+(Áno, `type` deklarácia robí to čo by si čakal.)
 
 .play prog/tour/structs.go
 
@@ -347,7 +347,7 @@ Výraz `new(T)` alokuje vynulovanú `T` hodnotu a vráti ukazovateľ na ňu.
 
 	var t *T = new(T)
 
-or
+alebo
 
 	t := new(T)
 
@@ -363,15 +363,15 @@ Výraz
 
 deklaruje premennú `a` ako pole desiatich celých čísel.
 
-Dĺžka poľa je súčasťou jeho typu, takže nieje možné zmeniť veľkosť poľa.
+Dĺžka poľa je súčasťou jeho typu, takže nie je možné zmeniť veľkosť poľa.
 Zdá sa to byť obmedzujúce, ale neboj sa;
 Go poskytuje pohodlný spôsob práce s poľami.
 
 .play prog/tour/array.go
 
-* Slajsy
+* Slajsy (Slices)
 
-Slajs ukazuje na pole hodnôt a taktiež obsahuje veľkosť.
+Slajs ukazuje na pole hodnôt a taktiež obsahuje jeho veľkosť.
 
 `[]T` je slajs s prvkami typu `T`.
 
@@ -379,7 +379,7 @@ Slajs ukazuje na pole hodnôt a taktiež obsahuje veľkosť.
 
 * Rozdeľovanie slajsov
 
-Slajsy je možné rozdeľovať a vytvárať tak slajs s novou hodnotou, ktorý smeruje na na to isté pole.
+Slajsy je možné rozdeľovať a vytvárať tak slajsy s novou hodnotou, ktoré smerujú na to isté pole.
 
 Výraz
 
@@ -418,7 +418,7 @@ Nulová hodnota slajsu je `nil`.
 
 Nulový slajs má dĺžku a kapacitu rovnú 0.
 
-(Ak sa chceš dozvedieť viac o slajsoch, prečítaj si [[http://golang.org/doc/articles/slices_usage_and_internals.html][Slajsy: použitie a interná štruktúra]] článok.)
+(Ak sa chceš dozvedieť viac o slajsoch, prečítaj si článok [[http://golang.org/doc/articles/slices_usage_and_internals.html][Slajsy: použitie a interná štruktúra]].)
 
 .play prog/tour/nil-slices.go
 
@@ -430,7 +430,7 @@ Nulový slajs má dĺžku a kapacitu rovnú 0.
 
 * Range - pokračovanie
 
-Index alebo hodnotu môžeš preskočiť priradením `_`.
+Index alebo hodnotu môžeš preskočiť priradením do premennej `_`.
 
 Ak chceš iba index, vynechaj ", value" úplne.
 
@@ -438,9 +438,9 @@ Ak chceš iba index, vynechaj ", value" úplne.
 
 * Cvičenie: Slajsy
 
-Implementuj funkciu `Pic`. Mala by vrátiť slajs dĺžky `dy`, pričom každý jej prvok je slajs dĺžky `dx` z 8-bitových celých čísel. Keď spustíš program, tvoj obrázok bude zobrazený a celé čísla budú interpretované v stupňoch šedej (dobre, modrej).
+Implementuj funkciu `Pic`. Mala by vrátiť slajs dĺžky `dy`, pričom každý jej prvok je slajs dĺžky `dx` z 8-bitových celých čísel. Keď spustíš program, tvoj obrázok bude zobrazený a celé čísla budú interpretované v stupňoch šedej (tak dobre, modrej).
 
-Výber obrázku je na tebe. Medzi zaujímavé funkcie patria `x^y`, `(x+y)/2` a `x*y`.
+Výber obrázku je na tebe. Medzi zaujímavé funkcie patria napríklad `x^y`, `(x+y)/2` alebo `x*y`.
 
 (Je potrebné použiť cyklus pre alokáciu každého `[]uint8` vo vnútri `[][]uint8`.)
 
@@ -452,19 +452,19 @@ Výber obrázku je na tebe. Medzi zaujímavé funkcie patria `x^y`, `(x+y)/2` a 
 
 Mapa mapuje kľúče na hodnoty.
 
-Mapy musia byť vytvorené pomocou `make` (nie `new`) pred tým ako je ich možné použiť; `nil` mapa je prázdna a nieje možné do nej priradzovať.
+Mapy musia byť vytvorené pomocou funkcie `make` (nie `new`) pred tým, ako je ich možné použiť; `nil` mapa je prázdna a nie je možné do nej priradzovať.
 
 .play prog/tour/maps.go
 
 * Mapové literály
 
-Mapové literály sú ako štruktúrové literály, až nato, že kľúče sú povinné.
+Mapové literály sú ako štruktúrové literály, až nato, že ich kľúče sú povinné.
 
 .play prog/tour/map-literals.go
 
 * Mapové literály - pokračovanie
 
-Ak je typ najvyššej úrovne iba názov typu, môžeš ho vynechať v prvkoch literálu.
+Ak je typ najvyššej úrovne iba názvom typu, môžeš ho v prvkoch literálu vynechať.
 
 .play prog/tour/map-literals-continued.go
 
@@ -482,13 +482,13 @@ Vymaž prvok:
 
 	delete(m, key)
 
-Vyskúšaj či kľúč existuje pomocou dvojhodnotového priradenia:
+Vyskúšaj, či kľúč existuje pomocou dvojhodnotového priradenia:
 
 	elem, ok = m[key]
 
-Ak `key` je v `m`, `ok` je `true`. Ak nie, `ok` je `false` a `elem` je nulová hodnota pre typ prvku z mapy.
+Ak sa kľúč `key` nachádza v `m`, `ok` je rovné `true`. Ak nie, `ok` je rovné `false` a `elem` je nulová hodnota pre typ prvku z mapy.
 
-Podobne, keď čítaš z mapy, ak kľúč neexistuje tak výsledok je nulová hodnota pre typ prvku z mapy.
+Podobne ako keď čítaš z mapy, ak kľúč neexistuje, tak výsledok je nulová hodnota pre typ prvku z mapy.
 
 .play prog/tour/mutating-maps.go
 
@@ -496,11 +496,11 @@ Podobne, keď čítaš z mapy, ak kľúč neexistuje tak výsledok je nulová ho
 
 Implementuj funkciu `WordCount`. Mala by vrátiť mapu výskytov každého “slova“ v reťazci `s`. Testovacia funkcia `wc.Test` spustí sériu testov na poskytnutej funkcii a vypíše úspech alebo zlyhanie.
 
-Možno ti príde funkcia [[http://golang.org/pkg/strings/#Fields][strings.Fields]] užitočná.
+Funkcia [[http://golang.org/pkg/strings/#Fields][strings.Fields]] môže byť pre teba užitočná.
 
 .play prog/tour/exercise-maps.go
 
-* Hodnoty funkcie
+* Funkcie ako hodnoty
 
 Aj funkcie sú hodnoty.
 
@@ -508,9 +508,9 @@ Aj funkcie sú hodnoty.
 
 * Funkčné uzávery (closures)
 
-Funkcie v Go môžu byť uzávery. Uzáver je hodnota funkcie, ktorá odkazuje na premenné z vonka jej tela. Funkcia môže pristupovať a priradzovať do odkazovaných premenných; v tomto ponímaní je funkcia "viazaná" na premenné.
+Funkcie v Go môžu byť uzávery. Uzáver je hodnota funkcie, ktorá odkazuje na premenné zvonku jej tela. Funkcia môže pristupovať a priradzovať do odkazovaných premenných; v tomto ponímaní je funkcia "viazaná" na premenné.
 
-Napríklad, funkcia `adder` vracia uzáver. Každý uzáver je viazaný na jeho vlastnú `sum` premennú.
+Príkladom je funkcia `adder`, ktorá vracia uzáver. Každý uzáver je viazaný na jeho vlastnú `sum` premennú.
 
 .play prog/tour/function-closures.go
 
@@ -530,9 +530,9 @@ Telo `case` sa preruší automaticky, iba ak sa nekončí `fallthrough` volaním
 
 .play prog/tour/switch.go
 
-* Switch poradie vyhodnotenia
+* Switch - poradie vyhodnotenia
 
-Možnosti switchu sú vyhodnocované zhora nadol a vyhodnocovanie sa zastaví, keď možnosť uspeje.
+Možnosti switchu sú vyhodnocované zhora nadol a vyhodnocovanie sa zastaví akonáhle možnosť uspeje.
 
 (Napríklad,
 
@@ -544,8 +544,8 @@ Možnosti switchu sú vyhodnocované zhora nadol a vyhodnocovanie sa zastaví, k
 nezavolá funkciu `f` ak `i==0`.)
 
 #appengine: *Poznámka:* V Go ihrisku čas vždy začína
-#appengine: 2009-11-10 23:00:00 UTC, hodnota, ktorej význam je ponechaný ako
-#appengine: cvičenia pre čitateľa.
+#appengine: 2009-11-10 23:00:00 UTC - hodnota, ktorej význam je ponechaný ako
+#appengine: cvičenie pre čitateľa.
 
 .play prog/tour/switch-evaluation-order.go
 
@@ -559,29 +559,29 @@ Táto konštrukcia môže byť jasnou cestou ako zapísať dlhé if-then-else re
 
 * Pokročilé cvičenie: Komplexné tretie odmocniny
 
-Poďme preskúmať vstavanú podporu Go pre komplexné čísla za pomoci typov `complex64` a `complex128`. Pre tretie odmocniny, Newtonova metóda predstavuje opakovať:
+Poďme preskúmať vstavanú podporu Go pre komplexné čísla za pomoci typov `complex64` a `complex128`. Pre tretie odmocniny predstavuje Newtonova metóda opakovanie výrazu:
 
 .image static/newton3.png
 
-Nájdi tretiu odmocninu čísla 2, len aby si sa ubezpečil, že algoritmus funguje. V balíčku `math/cmplx` nájdeš [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] funkciu.
+Nájdi tretiu odmocninu čísla 2 len aby si sa ubezpečil, že algoritmus funguje. V balíčku `math/cmplx` nájdeš funkciu [[http://golang.org/pkg/math/cmplx/#Pow][Pow]].
 
 .play prog/tour/advanced-exercise-complex-cube-roots.go
 
 * Metódy a rozhrania
 
-Nasledujúca skupina slajdov pokrýva metódy a rozhrania, konštrukcie, ktoré definujú objekty a ich správanie.
+Nasledujúca skupina slajdov pokrýva metódy a rozhrania - konštrukcie, ktoré definujú objekty a ich správanie.
 
 * Metódy
 
 Go neobsahuje triedy. Je však možné definovať metódy na štrukturách.
 
-_Príjemca_metódy_ sa nachádza v jeho vlastnom zozname argumentov medzi kľúčovým slovom `func` a názvom metódy.
+_Príjemca_metódy_ sa nachádza v jej vlastnom zozname argumentov medzi kľúčovým slovom `func` a názvom metódy.
 
 .play prog/tour/methods.go
 
 * Metódy - pokračovanie
 
-Po pravde si môžeš nadefinovať metódu na _každom_ type, ktorý patrí do tvojho balíčku, nielen na štruktúrach.
+Popravde si môžeš nadefinovať metódu na _každom_ type, ktorý patrí do tvojho balíčku, nielen na štruktúrach.
 
 Nemôžeš však nadefinovať metódu na type z druhého balíčka alebo na základnom type.
 
@@ -591,13 +591,13 @@ Nemôžeš však nadefinovať metódu na type z druhého balíčka alebo na zák
 
 Metódy môžu byť priradené na pomenovaný typ alebo na ukazovateľ na pomenovaný typ.
 
-Práve sme videli dve `Abs` metódy. Jednu na type ukazovateľ `*Vertex` a druhú na type hodnota `MyFloat`.
+Práve si videl dve metódy `Abs`. Jednu na type ukazovateľ `*Vertex` a druhú na type `MyFloat`.
 
 Existujú dva dôvody prečo použiť príjemcu typu ukazovateľ. Prvý, zabrániť kopírovaniu hodnoty pri každom volaní metódy (viac efektívne, keď je typ hodnoty veľká štruktúra). Druhý, umožniť metóde upraviť hodnotu na ktorú príjemca ukazuje.
 
 Vyskúšaj zmeniť deklaráciu metód `Abs` a `Scale` tak, aby použili `Vertex` ako príjemcu namiesto `*Vertex`.
 
-Metóda `Scale` nemá žiadny efekt keď `v` je `Vertex`. `Scale` mutuje `v`. Keď je `v` typu hodnoty (nie ukazovateľa), metóda vidí kópiu `Vertex` a nemôže mutovať pôvodnú hodnotu.
+Metóda `Scale` nemá žiadny efekt, keď je `v` typu `Vertex`. `Scale` mutuje `v`. Keď je `v` hodnota (nie ukazovateľ), metóda vidí kópiu `Vertex` a nemôže mutovať pôvodnú hodnotu.
 
 `Abs` funguje v oboch prípadoch. Iba číta `v`. Nezáleží natom či číta pôvodnú hodnotu (cez ukazovateľ) alebo kópiu tejto hodnoty.
 
@@ -617,18 +617,17 @@ Typ implementuje rozhranie tak, že implementuje jeho metódy.
 
 _Neexistuje_žiadna_explicitná_deklarácia_tohto_zámeru._
 
-Implicitné rozhrania oddeľujú implementačné balíčky od balíčkov, ktoré definuju rozhrania: 
-Implicit interfaces decouple implementation packages from the packages that define the interfaces: ani jedna nieje závislá na druhej.
+Implicitné rozhrania oddeľujú implementačné balíčky od balíčkov, ktoré definuju rozhrania: ani jedna nie je závislá na druhej.
 
-Taktiež to podporuje definíciu presných rozhraní, pretože nemusíš hľadať každú implementáciu a označiť ju novým názvom rozhrania.
+Podporuje to taktiež definíciu presných rozhraní, pretože nemusíš hľadať každú implementáciu a označiť ju novým názvom rozhrania.
 
-[[http://golang.org/pkg/io/][Package io]] definuje `Reader` a `Writer`; ty nemusíš.
+[[http://golang.org/pkg/io/][Balíček io]] definuje rozhrania `Reader` a `Writer`; takže ty už nemusíš.
 
 .play prog/tour/interfaces-are-satisfied-implicitly.go
 
 * Chyby
 
-Chyba je hocičo čo sa dokáže popísať ako chybový reťazec. Táto myšlienka je zachytená preddefinovaným, vstavaným rozhraním `error` s jedinou metódou `Error`, ktorá vracia reťazec.
+Chyba je hocičo, čo sa dokáže opísať chybovým reťazcom. Táto myšlienka je zachytená preddefinovaným, vstavaným rozhraním `error` s jedinou metódou `Error`, ktorá vracia reťazec.
 
 	type error interface {
 		Error() string
@@ -640,10 +639,9 @@ Rôzne výpisové rutiny v balíčku `fmt` automaticky vedia zavolať túto met�
 
 * Cvičenie: Chyby
 
-Skopíruj svoju funkciu `Sqrt` z predošlých cvičení a uprav ju tak aby vrátila `error` hodnotu.
-Copy your `Sqrt` function from the earlier exercises and modify it to return an `error` value.
+Skopíruj svoju funkciu `Sqrt` z predošlých cvičení a uprav ju tak, aby vrátila `error` hodnotu.
 
-`Sqrt` by mala vrátiť nenulovú chybovú hodnotu pri zadaní záporného čísla, keďže nepodporuje komplexné čísla. 
+Keďže funkcia `Sqrt` nepodporuje komplexné čísla, tak by mala vrátiť nenulovú chybovú hodnotu pri zadaní záporného čísla. 
 
 Vytvor nový typ
 
@@ -657,13 +655,13 @@ metódy tak aby `ErrNegativeSqrt(-2).Error()` vrátilo `"cannot`Sqrt`negative`nu
 
 *Poznámka:* volanie `fmt.Print(e)` vo vnútri metódy `Error` spôsobí v programe nekonečný cyklus. Môžes tomu zabrániť tým, že najprv prevedieš `e`: `fmt.Print(float64(e))`. Prečo ?
 
-Uprav svoju `Sqrt` funkciu aby vracala hodnotu `ErrNegativeSqrt` pri zadaní záporného čísla.
+Uprav svoju `Sqrt` funkciu tak, aby po zadaní záporného čísla vracala hodnotu `ErrNegativeSqrt`.
 
 .play prog/tour/exercise-errors.go
 
 * Webové servery
 
-[[http://golang.org/pkg/net/http/][Balíček http]] obsluhuje HTTP požiadavky pomocou každej hodnoty, ktorá implementuje `http.Handler`:
+[[http://golang.org/pkg/net/http/][Balíček http]] obsluhuje HTTP požiadavky pomocou každej hodnoty, ktorá implementuje rozhranie `http.Handler`:
 
 	package http
 	
@@ -671,7 +669,7 @@ Uprav svoju `Sqrt` funkciu aby vracala hodnotu `ErrNegativeSqrt` pri zadaní zá
 		ServeHTTP(w ResponseWriter, r *Request)
 	}
 
-V tejto ukážke typ `Hello` implementuje `http.Handler`.
+V tejto ukážke typ `Hello` implementuje rozhranie `http.Handler`.
 
 Pozri si [[http://localhost:4000/][http://localhost:4000/]] pre zobrazenie pozdravu.
 
@@ -693,7 +691,7 @@ Implementuj nasledujúce typy a nedefinuj na nich ServeHTTP metódy. Zaregistruj
 		Who      string
 	}
 
-Napríklad, mal by si byť schopný zaregistrovať handlery pomocou:
+Mal by si byť schopný napríklad zaregistrovať spracovávateľov pomocou:
 
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
@@ -712,23 +710,23 @@ Napríklad, mal by si byť schopný zaregistrovať handlery pomocou:
 		At(x, y int) color.Color
 	}
 
-(Pozri si [[http://golang.org/pkg/image/#Image][dokumentáciu]] pre všetky detaily.)
+(Pre všetky detaily si pozri [[http://golang.org/pkg/image/#Image][dokumentáciu]].)
 
-Taktiež, `color.Color` a `color.Model` sú rozhrania, ale my ich budeme ignorovať, takže použijeme preddefinované implementácie `color.RGBA` a `color.RGBAModel`.
+Typy `color.Color` a `color.Model` sú taktiež rozhrania, ale my ich budeme ignorovať, takže použijeme preddefinované implementácie `color.RGBA` a `color.RGBAModel`.
 
 .play prog/tour/images.go
 
 * Cvičenie: Obrázky
 
-Pamätáš si generátor obrázkov, ktorý si nedávno napísal ? Poďme napísať ďaľśí, tentokrát však bude vracať implementáciu `image.Image` namiesto slajsu dát.
+Pamätáš si generátor obrázkov, ktorý si nedávno napísal ? Poďme napísať ďaľśí, tentokrát však bude vracať implementáciu rozhrania `image.Image` namiesto slajsu dát.
 
-Nadefinuj svoj vlastný `Image` typ, implementuj [[http://golang.org/pkg/image/#Image][potrebné metódy]] a zavolaj `pic.ShowImage`.
+Nadefinuj svoj vlastný typ `Image`, implementuj [[http://golang.org/pkg/image/#Image][potrebné metódy]] a zavolaj funkciu `pic.ShowImage`.
 
-Metóda `Bounds` by mala vrátiť `image.Rectangle`, ako `image.Rect(0,`0,`w,`h)`.
+Metóda `Bounds` by mala vrátiť typ `image.Rectangle` tak, ako `image.Rect(0,`0,`w,`h)`.
 
-Metóda `ColorModel` by mala vrátiť `color.RGBAModel`.
+Metóda `ColorModel` by mala vrátiť typ `color.RGBAModel`.
 
-Metóda `At` by mala vrátiť farbu; hodnota `v` z posledného generátora obrázkov zodpovedá hodnote `color.RGBA{v,`v,`255,`255}` v tomto generátore.
+Metóda `At` by mala vrátiť farbu; hodnota `v` z posledného generátora obrázkov zodpovedá v tomto generátore hodnote `color/RGBA{v,`v,`255,`255}`.
 
 .play prog/tour/exercise-images.go
 
@@ -736,11 +734,11 @@ Metóda `At` by mala vrátiť farbu; hodnota `v` z posledného generátora obrá
 
 Bežným vzorom je [[http://golang.org/pkg/io/#Reader][io.Reader]], ktorý obaľuje ďaľší `io.Reader`, ktorý nejakým spôsobom pozmeňuje dáta.
 
-Napríklad, funkcia [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] preberá `io.Reader` (tok gzippovaných dát) a vracia `*gzip.Reader`, ktorý tiež implementuje `io.Reader` (tok dekomprimovaných dát).
+Napríklad funkcia [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] preberá `io.Reader` (tok gzippovaných dát) a vracia `*gzip.Reader`, ktorý tiež implementuje rozhranie`io.Reader` (tok dekomprimovaných dát).
 
-Implementuj `rot13Reader`, ktorý implementuje `io.Reader` a číta z `io.Reader`, zatiaľ čo upravuje tok dát aplikovaním [[http://en.wikipedia.org/wiki/ROT13][ROT13]] substitučnej šifry na všetky znaky abecedy.
+Implementuj rozhranie `rot13Reader`, ktorý implementuje rozhranie `io.Reader` a číta z `io.Reader`, zatiaľ čo upravuje tok dát aplikovaním [[http://en.wikipedia.org/wiki/ROT13][ROT13]] substitučnej šifry na všetky znaky abecedy.
 
-Typ `rot13Reader` je pre teba pripravený. Sprav z neho `io.Reader` implementovaním jeho `Read` metódy.
+Typ `rot13Reader` je pre teba pripravený. Sprav z neho typ `io.Reader` implementovaním jeho metódy `Read`.
 
 .play prog/tour/exercise-rot-reader.go
 
@@ -754,7 +752,7 @@ _gorutina_ je ľahké vlákno spravované behovým prostredím Go.
 
 	go f(x, y, z)
 
-spustí novú gorutinu, ktorá spustí
+spustí novú gorutinu, ktorá spustí funkciu
 
 	f(x, y, z)
 
@@ -764,7 +762,7 @@ Gorutiny bežia v tom istom adresnom priestore, takže prístup do zdieľanej pa
 
 .play prog/tour/goroutines.go
 
-* Kanály
+* Kanály (Channels)
 
 Kanály sú potrubia s určeným typom cez ktoré môžeš posielať a prijímať hodnoty pomocou operátora kanálu `<-`.
 
@@ -774,11 +772,11 @@ Kanály sú potrubia s určeným typom cez ktoré môžeš posielať a prijíma�
 
 (Dáta tečú v smere šípky.)
 
-Tak ako mapy a slajsy, kanály musia byť vytvorené predtým ako je ich možné použiť:
+Tak, ako mapy a slajsy, kanály musia byť vytvorené predtým, ako je ich možné použiť:
 
 	ch := make(chan int)
 
-Štandardne, posiela a prijíma blok dokým nieje druhá strana pripravená. Toto umožňuje gorutinám synchronizáciu bez explicitných zámkov alebo stavových premenných.
+Štandardne sa posiela a prijíma blok dokým nie je druhá strana pripravená. Toto umožňuje gorutinám synchronizáciu bez explicitných zámkov alebo stavových premenných.
 
 .play prog/tour/channels.go
 
@@ -788,25 +786,25 @@ Kanály môžu byť _buffrované_. Pre inicializáciu buffrovaného kanálu zada
 
 	ch := make(chan int, 100)
 
-Posiela do buffrovaného kanálu blok iba vtedy, keď je buffer je plný. Prijíma blok keď je buffer prázdny.
+Buffrovaný kanál odosiela blok iba vtedy, keď je buffer plný. Blok sa prijíma iba vtedy, keď je buffer prázdny.
 
-Uprav ukážku tak, aby preplnila buffer a uvidíš čo sa stane.
+Uprav ukážku tak, aby sa buffer preplnil a uvidíš čo sa stane.
 
 .play prog/tour/buffered-channels.go
 
 * Range a Close
 
-Odosielateľ môže `zatvoriť` kanál a naznačiť tak, že už žiadne ďaľšie hodnoty už nebudú odoslané. Príjemcovia môžu overovať či bol kanál zavretý priradením druhého argumentu do prijímacieho výrazu:
+Odosielateľ môže `zatvoriť` kanál a naznačiť tak, že už žiadne ďaľšie hodnoty nebudú odoslané. Príjemcovia môžu overovať, či bol kanál zavretý, priradením druhého argumentu do prijímacieho výrazu:
 
 	v, ok := <-ch
 
-`ok` je `false` ak už neexistujú žiadne hodnoty na prijatie a kanál je zatvorený.
+`ok` je rovné `false` ak už neexistujú žiadne hodnoty na prijatie a kanál je zatvorený.
 
-Cyklus `for`i`:=`range`c` prijíma hodnoty z kanálu opakovane až dokým nieje zatvorený.
+Cyklus `for`i`:=`range`c` prijíma hodnoty z kanálu opakovane až dokým nie je zatvorený.
 
 *Poznámka:* Kanál by mal vždy zatvoriť odosielateľ, nikdy príjemca. Odosielanie do zatvoreného kanálu spôsobí panic.
 
-*Ďaľšia*poznámka*: Kanály niesú ako súbory: zvyčajne ich nieje potrebné zatvárať. Zatvorenie je potrebné iba ak je treba príjemcovi oznámiť, že už nebudú nasledovať ďaľšie hodnoty, napríklad ukončenie `range` cyklu.
+*Ďaľšia*poznámka*: Kanály nie sú ako súbory: zvyčajne ich nie je potrebné zatvárať. Zatvorenie je potrebné iba ak je treba príjemcovi oznámiť, že už nebudú nasledovať ďaľšie hodnoty, napríklad ukončenie `range` cyklu.
 
 .play prog/tour/range-and-close.go
 
@@ -820,7 +818,7 @@ Volanie `select` umožňuje gorutine čakať na viac komunikačných akcií.
 
 * Štandardný výber
 
-Možnosť `default` vo volaní `select` je spustená ak nieje pripravená žiadna iná možnosť.
+Možnosť `default` vo volaní `select` je spustená ak nie je pripravená žiadna iná možnosť.
 
 Použi možnosť `default` pre skúšku odoslania alebo príjmu bez blokovania:
 
@@ -836,11 +834,11 @@ Použi možnosť `default` pre skúšku odoslania alebo príjmu bez blokovania:
 * Cvičenie: Ekvivalentné binárne stromy
 
 Existuje veľa rôznych binárnych stromov s rovnakou postupnosťou hodnôt uloženou v listoch.
-Napríklad, tu sú dva binárne stromy, ktoré obsahujú postupnosť 1, 1, 2, 3, 5, 8, 13.
+Tu sú napríklad dva binárne stromy, ktoré obsahujú postupnosť 1, 1, 2, 3, 5, 8, 13.
 
 .image static/tree.png
 
-Funkcia, ktorá kontroluje či dva binárne stromy obsahujú tú istú postupnosť je vo väčšine jazykov celkom zložitá. My pre zápis jednoduchého riešenia použijeme kanály a súbežnosť Go. 
+Funkcia, ktorá skontroluje či dva binárne stromy obsahujú tú istú postupnosť je vo väčšine jazykov celkom zložitá. My pre zápis jednoduchého riešenia použijeme kanály a súbežnosť Go. 
 
 Táto ukážka používa balíček `tree`, ktorý definuje typ:
 
@@ -872,11 +870,11 @@ Potom prečítaj a vypíš 10 hodnôt z kanála. Mali by to byť čísla 1, 2, 3
 
 .play prog/tour/exercise-equivalent-binary-trees.go
 
-* Cvičenie: Webový Crawler
+* Cvičenie: Webový crawler
 
-V tomto cvičení použiješ funkcie súbežnosťi v Go na paralelizovanie webového crawlera.
+V tomto cvičení použiješ funkcie súbežnosťi Go na paralelizovanie webového crawlera.
 
-Uprav funkciu `Crawl` tak, aby oslovila URL adresy paralelne bez toho aby oslovila tú istú URL dvakrát.
+Uprav funkciu `Crawl` tak, aby oslovila URL adresy paralelne bez toho, aby oslovila tú istú URL adresu dvakrát.
 
 .play prog/tour/exercise-web-crawler.go
 
@@ -910,10 +908,10 @@ prechádzku zdrojovým kódom.
 Ak chceš začať písať webové aplikácie, pozri si
 [[http://vimeo.com/53221558][Jednoduché programovacie prostredie]]
 ([[http://talks.golang.org/2012/simple.slide][slajdy]])
-a prečítaj si
-[[http://golang.org/doc/articles/wiki/][Písanie webových aplikácií]] tutoriál.
+a prečítaj si tutoriál
+[[http://golang.org/doc/articles/wiki/][Písanie webových aplikácií]].
 
-Prechádzka zdrojovým kódom [[http://golang.org/doc/codewalk/functions/][Prvo triedne funkcie v Go]] poskytuje zaujímavý pohľad na typy funkcií v Go.
+Prechádzka zdrojovým kódom [[http://golang.org/doc/codewalk/functions/][Prvo-triedne funkcie v Go]] poskytuje zaujímavý pohľad na typy funkcií v Go.
 
 [[http://blog.golang.org/][Go Blog]] obsahuje veľký archív informatívnych článkov o Go.
 
