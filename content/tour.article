@@ -609,6 +609,11 @@ Typ rozhranie je definovaný množinou metód.
 
 Hodnota typu rozhrania môže obsahovať každú hodnotu, ktorá implemetuje tieto metódy.
 
+*Poznámka:* Kód na ľavej strane zlyhá pri kompilácii.
+
+`Vertex` nevyhovuje rozhraniu `Abser`, lebo
+metóda `Abs` je definovaná iba v type `*Vertex` a nie `Vertex`.
+
 .play prog/tour/interfaces.go
 
 * Rozhrania sú splnené implicitne
