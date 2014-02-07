@@ -56,21 +56,23 @@ Táto prehliadka je dostupná aj v ďaľších jazykoch:
 Pre pokračovanie klikni na tlačidlo "Nasledujúci" alebo stlač klávesu PageDown.
 
 #appengine: * Go Ihrisko
-#appengine: 
+#appengine:
 #appengine: Táto prehliadka je postavená na [[http://play.golang.org/][Go Ihrisku]],
 #appengine: webovej službe bežiacej na serveroch [[http://golang.org/][golang.org]].
-#appengine: 
+#appengine:
 #appengine: Služba prijme Go program, skompiluje, nalinkuje, spustí ho v
 #appengine: pieskovisku a následne vráti výsledok.
-#appengine: 
+#appengine:
 #appengine: Pre programy spúšťané v pieskovisku existujú nasledujúce obmedzenia:
-#appengine: 
-#appengine: - V ihrisku je možné použiť väčšinu štandardnej knižnice, až na niektoré výnimky; predovšetkým chýba prístup do siete a na súborový systém. Aj preto je zápis do štandardného a chybového výstupu jedinou možnou formou komunikácie programu s okolitým svetom.
+#appengine:
+#appengine: - Jedinou možnou formou komunikácie programu s okolitým svetom je zápis do štandardného a chybového výstupu.
 #appengine: - V ihrisku čas začína o 2009-11-10 23:00:00 UTC (určenie významnosti tohto dátumu je cvičením pre čitateľa). Umožňuje to ľahšie kešovanie programov tým, že im dáme predvídateľný výstup.
 #appengine: - Existujú tiež limity pre čas behu programu a taktiež obmedzenie využitia procesoru a pamäte. Beh programov je obmedzený na jedno vlákno (je ale možné použiť viac gorutín).
 #appengine:
 #appengine: Ihrisko používa poslednú stabilnú verziu Go.
-#appengine: 
+#appengine:
+#appengine: Prečítaj si "[[http://blog.golang.org/playground][Vo vnútri Go Ihriska]]" pre viac informácií.
+#appengine:
 #appengine: .play prog/tour/sandbox.go
 
 * Balíčky
@@ -84,9 +86,9 @@ Tento program používa balíčky s cestami importov `"fmt"` a `"math/rand"`.
 Názov balíčka je podľa konvencie rovnaký ako posledná časť cesty importu. Napríklad
 balíček `"math/rand"` obsahuje súbory, ktoré začínajú zápisom `package`rand`.
 
-#appengine: *Poznámka:* prostredie v ktorom sú programy spúštané je 
+#appengine: *Poznámka:* prostredie v ktorom sú programy spúštané je
 #appengine: predvídateľné, takže `rand.Intn` vždy vráti to isté číslo.
-#appengine: 
+#appengine:
 #appengine: (Pre zobrazenie iného čísla je potrebné naseedovať generátor čísel; pozri [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]].)
 
 .play prog/tour/packages.go
@@ -126,7 +128,7 @@ Všimni si, že typ sa nachádza _za_ názvom premennej.
 
 * Funkcie - pokračovanie
 
-Keď dva alebo viac po sebe idúcich pomenovaných argumentov funkcie zdieľajú ten istý typ, je možné vynechať typ vo všetkých okrem posledného parametra. 
+Keď dva alebo viac po sebe idúcich pomenovaných argumentov funkcie zdieľajú ten istý typ, je možné vynechať typ vo všetkých okrem posledného parametra.
 
 V tomto príklade sme skrátili
 
@@ -181,19 +183,19 @@ Mimo funkcie sa každá konštrukcia začína kľúčovým slovom (`var`, `func`
 Základné typy Go sú
 
 	bool
-	
+
 	string
-	
+
 	int  int8  int16  int32  int64
 	uint uint8 uint16 uint32 uint64 uintptr
-	
+
 	byte // alias pre uint8
-	
+
 	rune // alias pre int32
 	     // reprezentuje Unicode kódový bod
-	
+
 	float32 float64
-	
+
 	complex64 complex128
 
 .play prog/tour/basic-types.go
@@ -224,7 +226,7 @@ Vyskúšaj v ukážke odstrániť prevody `float64` alebo `int` a uvidíš čo s
 
 Konštanty sú deklarované ako premenné, ale pomocou kľúčového slova `const`.
 
-Hodnota konštanty môže byť písmeno, reťazec, pravdivostná (boolean) alebo číselná hodnota. 
+Hodnota konštanty môže byť písmeno, reťazec, pravdivostná (boolean) alebo číselná hodnota.
 
 Konštanty nemôžu byť deklarované pomocou `:=` syntaxe.
 
@@ -250,7 +252,7 @@ Základný cyklus `for` vypadá takisto ako v jazykoch C alebo Java, okrem toho,
 
 * For - pokračovanie
 
-Tak, ako v jazyku C alebo Java, môžeš vynechať volania pred a po. 
+Tak, ako v jazyku C alebo Java, môžeš vynechať volania pred a po.
 
 .play prog/tour/for-continued.go
 
@@ -286,7 +288,7 @@ Premenné deklarované týmto volaním sú platné iba do konca `if`.
 
 * If a else
 
-Premenné deklarované vo vnútri krátkeho `if` volania sú tiež dostupné vo vnútri každého `else` bloku. 
+Premenné deklarované vo vnútri krátkeho `if` volania sú tiež dostupné vo vnútri každého `else` bloku.
 
 .play prog/tour/if-and-else.go
 
@@ -646,7 +648,7 @@ Rôzne výpisové rutiny v balíčku `fmt` automaticky vedia zavolať túto met�
 
 Skopíruj svoju funkciu `Sqrt` z predošlých cvičení a uprav ju tak, aby vrátila `error` hodnotu.
 
-Keďže funkcia `Sqrt` nepodporuje komplexné čísla, tak by mala vrátiť nenulovú chybovú hodnotu pri zadaní záporného čísla. 
+Keďže funkcia `Sqrt` nepodporuje komplexné čísla, tak by mala vrátiť nenulovú chybovú hodnotu pri zadaní záporného čísla.
 
 Vytvor nový typ
 
@@ -669,7 +671,7 @@ Uprav svoju `Sqrt` funkciu tak, aby po zadaní záporného čísla vracala hodno
 [[http://golang.org/pkg/net/http/][Balíček http]] obsluhuje HTTP požiadavky pomocou každej hodnoty, ktorá implementuje rozhranie `http.Handler`:
 
 	package http
-	
+
 	type Handler interface {
 		ServeHTTP(w ResponseWriter, r *Request)
 	}
@@ -689,7 +691,7 @@ Pozri si [[http://localhost:4000/][http://localhost:4000/]] pre zobrazenie pozdr
 Implementuj nasledujúce typy a nedefinuj na nich ServeHTTP metódy. Zaregistruj ich aby spracovávali konkrétne cesty na tvojom webovom serveri.
 
 	type String string
-	
+
 	type Struct struct {
 		Greeting string
 		Punct    string
@@ -708,7 +710,7 @@ Mal by si byť schopný napríklad zaregistrovať spracovávateľov pomocou:
 [[http://golang.org/pkg/image/#Image][Balíček image]] definuje rozhranie `Image`:
 
 	package image
-	
+
 	type Image interface {
 		ColorModel() color.Model
 		Bounds() Rectangle
@@ -785,7 +787,7 @@ Tak, ako mapy a slajsy, kanály musia byť vytvorené predtým, ako je ich možn
 
 .play prog/tour/channels.go
 
-* Buffrované kanály 
+* Buffrované kanály
 
 Kanály môžu byť _buffrované_. Pre inicializáciu buffrovaného kanálu zadaj dĺžku buffra ako druhý argument funkcie `make`:
 
@@ -843,7 +845,7 @@ Tu sú napríklad dva binárne stromy, ktoré obsahujú postupnosť 1, 1, 2, 3, 
 
 .image static/tree.png
 
-Funkcia, ktorá skontroluje či dva binárne stromy obsahujú tú istú postupnosť je vo väčšine jazykov celkom zložitá. My pre zápis jednoduchého riešenia použijeme kanály a súbežnosť Go. 
+Funkcia, ktorá skontroluje či dva binárne stromy obsahujú tú istú postupnosť je vo väčšine jazykov celkom zložitá. My pre zápis jednoduchého riešenia použijeme kanály a súbežnosť Go.
 
 Táto ukážka používa balíček `tree`, ktorý definuje typ:
 
